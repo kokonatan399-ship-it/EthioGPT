@@ -1,4 +1,53 @@
 plugins {
-    id("com.android.application") version "9.3.0" apply false
-    id("org.jetbrains.kotlin.android") version "2.3.21" apply false
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+}
+
+android {
+    namespace = "com.ethiogpt.app"
+    compileSdk = 36
+
+    defaultConfig {
+        applicationId = "com.ethiogpt.app"
+        minSdk = 24
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0.0"
+
+        buildConfigField("String", "ETHIOGPT_URL", "\"https://falling-sea-0b10.kokonatan399.workers.dev/\"")
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        debug {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+}
+
+dependencies {
+    implementation("androidx.core:core-ktx:1.17.0")
+    implementation("androidx.activity:activity-ktx:1.11.0")
+    implementation("androidx.webkit:webkit:1.17.0")
 }

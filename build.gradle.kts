@@ -1,6 +1,5 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -14,18 +13,24 @@ android {
         versionCode = 1
         versionName = "1.0.0"
 
-        buildConfigField("String", "ETHIOGPT_URL", "\"https://falling-sea-0b10.kokonatan399.workers.dev/\"")
+        buildConfigField(
+            "String",
+            "ETHIOGPT_URL",
+            "\"https://damp-pond-4895.kokonatan399.workers.dev/\""
+        )
     }
 
     buildTypes {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
@@ -35,10 +40,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 
     buildFeatures {
